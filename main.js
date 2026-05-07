@@ -31,7 +31,7 @@ const translations = {
         agile_p3: "Me õppisime ka \"Raudset Kolmnurka\". Aeg, kvaliteet ja ressursid mõjutavad projekti tulemust.",
         gallery_h2: "Kõik Lennukid",
         footer_copy: "© 2026 PaperJet Project",
-        footer_team: "Martin Rossakov | Illia Blahun | Anastasiia Radasheva",
+        footer_team: "Martin Rossakov | Illia Blahun | Nikita Orlenko",
         footer_group: "Grupp TARpv24"
     },
     en: {
@@ -66,7 +66,7 @@ const translations = {
         agile_p3: "We also learned about the \"Iron Triangle\". Time, quality and resources all affect the project outcome.",
         gallery_h2: "All Planes",
         footer_copy: "© 2026 PaperJet Project",
-        footer_team: "Martin Rossakov | Illia Blahun | Anastasiia Radasheva",
+        footer_team: "Martin Rossakov | Illia Blahun | Nikita Orlenko",
         footer_group: "Group TARpv24"
     }
 };
