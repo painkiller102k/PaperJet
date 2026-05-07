@@ -3,18 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>PaperJet Project</title>
-
     <link rel="icon" type="image/png" href="pildid/icon.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,262 +16,110 @@
 <div class="background-animation"></div>
 
 <header>
-
-    <div class="logo">
-        ✈ PaperJet Project
-    </div>
-
+    <div class="logo">✈ PaperJet Project</div>
     <nav>
-        <a href="#meist">Meist</a>
-        <a href="#lennukid">Lennukid</a>
-        <a href="#andmed">Andmed</a>
-        <a href="#agile">Agile</a>
+        <a href="#meist" data-i18n="nav_meist">Meist</a>
+        <a href="#lennukid" data-i18n="nav_lennukid">Lennukid</a>
+        <a href="#andmed" data-i18n="nav_andmed">Andmed</a>
+        <a href="#agile" data-i18n="nav_agile">Agile</a>
     </nav>
-
+    <div class="header-controls">
+        <button class="lang-btn active" data-lang="et" onclick="applyLang('et')">ET</button>
+        <button class="lang-btn" data-lang="en" onclick="applyLang('en')">EN</button>
+        <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">☀️</button>
+    </div>
 </header>
 
 <section class="hero">
-
     <img src="pildid/main.jpeg" alt="Peapilt">
-
     <div class="hero-text">
-
-        <h1>Paberlennukite Tulevik</h1>
-
-        <p>
-            Kiired ja stabiilsed lennukid.
-            Meie parimad mudelid Agile projekti ajal.
-        </p>
-
+        <h1 data-i18n="hero_h1">Paberlennukite Tulevik</h1>
+        <p data-i18n="hero_p">Kiired ja stabiilsed lennukid. Meie parimad mudelid Agile projekti ajal.</p>
         <a href="#lennukid">
-            <button>Vaata Lennukeid</button>
+            <button data-i18n="hero_btn">Vaata Lennukeid</button>
         </a>
-
     </div>
-
 </section>
 
 <section id="meist" class="section">
-
     <div class="about-container">
-
         <div class="about-text">
-
-            <h2>
-                <i class="fa-solid fa-industry"></i>
-                Meie Tehas
-            </h2>
-
-            <p>
-                Me töötasime kolmeliikmelises grupis.
-                Projekti ajal tegime erinevaid paberlennukeid
-                ja testisime nende kvaliteeti.
-            </p>
-
-            <p>
-                Alguses kasutasime Taylorismi meetodit,
-                aga hiljem läksime üle Agile tööviisile.
-                Agile meetod aitas meil paremini suhelda
-                ja teha kiiremaid parandusi.
-            </p>
-
-            <p>
-                Grupp: TARpv24
-            </p>
-
+            <h2><i class="fa-solid fa-industry"></i> <span data-i18n="meist_h2">Meie Tehas</span></h2>
+            <p data-i18n="meist_p1">Me töötasime kolmeliikmelises grupis. Projekti ajal tegime erinevaid paberlennukeid ja testisime nende kvaliteeti.</p>
+            <p data-i18n="meist_p2">Alguses kasutasime Taylorismi meetodit, aga hiljem läksime üle Agile tööviisile. Agile meetod aitas meil paremini suhelda ja teha kiiremaid parandusi.</p>
+            <p data-i18n="meist_p3">Grupp: TARpv24</p>
         </div>
-
         <img src="pildid/main_2.jpeg" alt="Tehas">
-
     </div>
-
 </section>
 
 <section id="lennukid" class="section dark">
-
-    <h2>
-        <i class="fa-solid fa-plane"></i>
-        Meie Lennukid
-    </h2>
-
+    <h2><i class="fa-solid fa-plane"></i> <span data-i18n="lennukid_h2">Meie Lennukid</span></h2>
     <div class="plane-grid">
 
         <div class="plane-card">
-
             <div class="slider">
-                <img class="slide active"
-                     src="pildid/paperjet_1.jpeg"
-                     alt="Lennuk 1">
-
-                <img class="slide"
-                     src="pildid/paperjet_11.jpeg"
-                     alt="Lennuk 1">
+                <img class="slide active" src="pildid/paperjet_1.jpeg" alt="Lennuk 1">
+                <img class="slide" src="pildid/paperjet_11.jpeg" alt="Lennuk 1">
             </div>
-
-            <h3>PaperJet X-1</h3>
-
-            <p>
-                Väga kerge ja stabiilne lennuk.
-                Sobib pika lennu jaoks.
-            </p>
-
+            <h3 data-i18n="x1_name">PaperJet X-1</h3>
+            <p data-i18n="x1_desc">Väga kerge ja stabiilne lennuk. Sobib pika lennu jaoks.</p>
         </div>
 
         <div class="plane-card">
-
             <div class="slider">
-
-                <img class="slide active"
-                     src="pildid/paperjet_4.jpeg"
-                     alt="Lennuk 2">
-
-                <img class="slide"
-                     src="pildid/paperjet_44.jpeg"
-                     alt="Lennuk 2">
-
+                <img class="slide active" src="pildid/paperjet_4.jpeg" alt="Lennuk 2">
+                <img class="slide" src="pildid/paperjet_44.jpeg" alt="Lennuk 2">
             </div>
-
-            <h3>PaperJet X-4</h3>
-
-            <p>
-                Kiire ja tugev lennuk.
-                Hea täpsuse ja kiiruse jaoks.
-            </p>
-
+            <h3 data-i18n="x4_name">PaperJet X-4</h3>
+            <p data-i18n="x4_desc">Kiire ja tugev lennuk. Hea täpsuse ja kiiruse jaoks.</p>
         </div>
 
     </div>
-
 </section>
 
 <section id="andmed" class="section">
-
-    <h2>
-        <i class="fa-solid fa-microchip"></i>
-        Tehnilised Andmed
-    </h2>
-
+    <h2><i class="fa-solid fa-microchip"></i> <span data-i18n="andmed_h2">Tehnilised Andmed</span></h2>
     <div class="specs-grid">
 
         <div class="spec-card">
-
-            <h3>PaperJet X-1</h3>
-
-            <p>Kaal: 4 g</p>
-            <p>Lennukaugus: 14 m</p>
-            <p>Tiivaulatus: 21 cm</p>
-            <p>Lennu tüüp: stabiilne</p>
-
+            <h3 data-i18n="x1_name">PaperJet X-1</h3>
+            <p data-i18n="x1_kaal">Kaal: 4 g</p>
+            <p data-i18n="x1_dist">Lennukaugus: 14 m</p>
+            <p data-i18n="x1_wing">Tiivaulatus: 21 cm</p>
+            <p data-i18n="x1_type">Lennu tüüp: stabiilne</p>
         </div>
 
         <div class="spec-card">
-
-            <h3>PaperJet X-4</h3>
-
-            <p>Kaal: 5 g</p>
-            <p>Lennukaugus: 11 m</p>
-            <p>Tiivaulatus: 19 cm</p>
-            <p>Lennu tüüp: kiire</p>
-
+            <h3 data-i18n="x4_name">PaperJet X-4</h3>
+            <p data-i18n="x4_kaal">Kaal: 5 g</p>
+            <p data-i18n="x4_dist">Lennukaugus: 11 m</p>
+            <p data-i18n="x4_wing">Tiivaulatus: 19 cm</p>
+            <p data-i18n="x4_type">Lennu tüüp: kiire</p>
         </div>
 
     </div>
-
 </section>
 
 <section id="agile" class="section dark">
-
-    <h2>
-        <i class="fa-solid fa-rocket"></i>
-        Agile Tööprotsess
-    </h2>
-
-    <p>
-        Projekti alguses töötasime nagu konveieril.
-        Igal inimesel oli ainult üks ülesanne.
-    </p>
-
-    <p>
-        Hiljem hakkasime kasutama Agile meetodit.
-        Siis saime rohkem suhelda ja üksteist aidata.
-    </p>
-
-    <p>
-        Me õppisime ka “Raudset Kolmnurka”.
-        Aeg, kvaliteet ja ressursid mõjutavad projekti tulemust.
-    </p>
-
+    <h2><i class="fa-solid fa-rocket"></i> <span data-i18n="agile_h2">Agile Tööprotsess</span></h2>
+    <p data-i18n="agile_p1">Projekti alguses töötasime nagu konveieril. Igal inimesel oli ainult üks ülesanne.</p>
+    <p data-i18n="agile_p2">Hiljem hakkasime kasutama Agile meetodit. Siis saime rohkem suhelda ja üksteist aidata.</p>
+    <p data-i18n="agile_p3">Me õppisime ka "Raudset Kolmnurka". Aeg, kvaliteet ja ressursid mõjutavad projekti tulemust.</p>
 </section>
 
 <section class="gallery">
-
-    <h2>
-        <i class="fa-solid fa-images"></i>
-        Kõik Lennukid
-    </h2>
-
+    <h2><i class="fa-solid fa-images"></i> <span data-i18n="gallery_h2">Kõik Lennukid</span></h2>
     <img src="pildid/lennukid.jpeg" alt="Kõik lennukid">
-
 </section>
 
 <footer>
-
-    <p>© 2026 PaperJet Project</p>
-
-    <p>
-        Martin Rossakov |
-        Illia Blahun |
-        Anastasiia Radasheva
-    </p>
-
-    <p>Grupp TARpv24</p>
-
+    <p data-i18n="footer_copy">© 2026 PaperJet Project</p>
+    <p data-i18n="footer_team">Martin Rossakov | Illia Blahun | Anastasiia Radasheva</p>
+    <p data-i18n="footer_group">Grupp TARpv24</p>
 </footer>
 
-<script>
-
-    const sliders = document.querySelectorAll('.slider');
-
-    sliders.forEach(slider => {
-
-        const slides = slider.querySelectorAll('.slide');
-
-        let index = 0;
-
-        setInterval(() => {
-
-            slides[index].classList.remove('active');
-
-            index = (index + 1) % slides.length;
-
-            slides[index].classList.add('active');
-
-        }, 3000);
-
-    });
-
-    const sections = document.querySelectorAll('.section, .gallery');
-
-    window.addEventListener('scroll', () => {
-
-        sections.forEach(section => {
-
-            const top = section.getBoundingClientRect().top;
-
-            if(top < window.innerHeight - 100){
-                section.classList.add('show');
-            }
-
-        });
-
-        const scrolled = window.scrollY;
-
-        document.querySelector('.hero img').style.transform =
-            `scale(1.1) translateY(${scrolled * 0.15}px)`;
-
-    });
-
-</script>
+<script src="main.js"></script>
 
 </body>
 </html>
