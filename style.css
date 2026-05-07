@@ -17,6 +17,23 @@ img{
     display:block;
 }
 
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-size:28px;
+    font-weight:bold;
+    color:#38bdf8;
+    letter-spacing:1px;
+}
+
+.logo img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
+}
+
 :root{
     --bg:linear-gradient(to bottom,#020617,#0f172a);
     --body-color:white;
