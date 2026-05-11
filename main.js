@@ -124,3 +124,220 @@ window.addEventListener("scroll", () => {
     document.querySelector(".hero img").style.transform =
         `scale(1.1) translateY(${window.scrollY * 0.15}px)`;
 });
+
+
+
+
+
+
+
+
+
+
+////
+let model;
+
+
+
+async function loadModel() {
+
+    try {
+
+        const URL =
+            "https://teachablemachine.withgoogle.com/models/Ls4BX8Aoh/";
+
+
+
+        model = await tmImage.load(
+            URL + "model.json",
+            URL + "metadata.json"
+        );
+
+
+
+        console.log("AI mudel laaditud!");
+
+
+
+        document.getElementById("result").innerHTML =
+            "✅ AI valmis töötama";
+
+    }
+
+    catch(error) {
+
+        console.error(error);
+
+        document.getElementById("result").innerHTML =
+            "❌ AI mudeli laadimine ebaõnnestus";
+    }
+}
+
+
+
+loadModel();
+
+
+
+
+
+document
+    .getElementById("imageUpload")
+    .addEventListener("change", function(event){
+
+        const file = event.target.files[0];
+
+
+
+        if(!file) return;
+
+
+
+        const preview =
+            document.getElementById("preview");
+
+
+
+        preview.src =
+            URL.createObjectURL(file);
+
+
+
+        preview.style.display = "block";
+    });
+
+
+
+
+
+
+
+async function predictImage() {
+
+    if(!model){
+
+        alert("AI mudel veel laeb...");
+        return;
+    }
+
+    const image =
+        document.getElementById("preview");
+
+    if(!image.src){
+
+        alert("Laadi kõigepealt pilt üles!");
+        return;
+    }
+
+    const prediction =
+        await model.predict(image);
+
+    console.log(prediction);
+
+    let bestPrediction = prediction[0];
+
+    for(let i = 1; i < prediction.length; i++) {
+
+        if(prediction[i].probability >
+            bestPrediction.probability){
+
+            bestPrediction = prediction[i];
+        }
+    }
+
+    const result =
+        document.getElementById("result");
+
+    const tutorial =
+        document.getElementById("tutorial");
+
+    tutorial.innerHTML = "";
+
+
+
+    // ПРОВЕРКА УВЕРЕННОСТИ AI
+    if(bestPrediction.probability < 0.80){
+
+        result.innerHTML =
+            "❓ AI ei ole kindel mis see on";
+
+        return;
+    }
+
+
+
+    if(bestPrediction.className == "Other") {
+
+        result.innerHTML =
+            "❌ See ei ole lennuk 😄";
+    }
+
+
+
+    else if(bestPrediction.className ==
+        "Real airplane") {
+
+        result.innerHTML =
+            "✈️ See on päris lennuk";
+    }
+
+
+
+    else if(bestPrediction.className ==
+        "Glider") {
+
+        result.innerHTML =
+            "✅ Tuvastatud: Purilennuk";
+
+
+
+        tutorial.innerHTML =
+
+        `
+        <h3>Kuidas voltida?</h3>
+
+        <p>1. Voldi paber pooleks</p>
+
+        <p>2. Tee pikad tiivad</p>
+
+        <p>3. Voldi servad alla</p>
+
+        <iframe width="320"
+                height="200"
+                src="https://www.youtube.com/embed/7KPaxKUDj6I"
+                frameborder="0"
+                allowfullscreen>
+        </iframe>
+        `;
+    }
+
+
+
+    else if(bestPrediction.className ==
+        "Classic paper airplane") {
+
+        result.innerHTML =
+            "✅ Klassikaline paberlennuk";
+
+
+
+        tutorial.innerHTML =
+
+        `
+        <h3>Kuidas voltida?</h3>
+
+        <p>1. Voldi paber keskele</p>
+
+        <p>2. Tee nina teravaks</p>
+
+        <p>3. Voldi tiivad</p>
+
+        <iframe width="320"
+                height="200"
+                src="https://www.youtube.com/embed/mCrAqCzMZ8c"
+                frameborder="0"
+                allowfullscreen>
+        </iframe>
+        `;
+    }
+}
