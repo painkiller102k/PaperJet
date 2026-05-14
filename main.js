@@ -134,17 +134,18 @@ window.addEventListener("scroll", () => {
 
 
 
-////
+//// AI MODEL
 let model;
 
 
 
+// ЗАГРУЗКА МОДЕЛИ
 async function loadModel() {
 
     try {
 
         const URL =
-            "https://teachablemachine.withgoogle.com/models/Ls4BX8Aoh/";
+            "https://teachablemachine.withgoogle.com/models/q20WswXx4/";
 
 
 
@@ -161,7 +162,6 @@ async function loadModel() {
 
         document.getElementById("result").innerHTML =
             "✅ AI valmis töötama";
-
     }
 
     catch(error) {
@@ -175,12 +175,14 @@ async function loadModel() {
 
 
 
+// ЗАГРУЗИТЬ МОДЕЛЬ
 loadModel();
 
 
 
 
 
+// PREVIEW PILT
 document
     .getElementById("imageUpload")
     .addEventListener("change", function(event){
@@ -212,9 +214,11 @@ document
 
 
 
+// AI KONTROLL
 async function predictImage() {
 
-    if(!model){
+    // МОДЕЛЬ НЕ ЗАГРУЖЕНА
+    if (!model) {
 
         alert("AI mudel veel laeb...");
         return;
@@ -223,27 +227,26 @@ async function predictImage() {
     const image =
         document.getElementById("preview");
 
-    if(!image.src){
+    // НЕТ КАРТИНКИ
+    if (!image.src) {
 
         alert("Laadi kõigepealt pilt üles!");
         return;
     }
 
+    // ПРЕДСКАЗАНИЕ
     const prediction =
         await model.predict(image);
 
+    // СОРТИРОВКА
+    prediction.sort((a, b) =>
+        b.probability - a.probability
+    );
+
     console.log(prediction);
 
-    let bestPrediction = prediction[0];
-
-    for(let i = 1; i < prediction.length; i++) {
-
-        if(prediction[i].probability >
-            bestPrediction.probability){
-
-            bestPrediction = prediction[i];
-        }
-    }
+    const bestPrediction =
+        prediction[0];
 
     const result =
         document.getElementById("result");
@@ -253,10 +256,8 @@ async function predictImage() {
 
     tutorial.innerHTML = "";
 
-
-
-    // ПРОВЕРКА УВЕРЕННОСТИ AI
-    if(bestPrediction.probability < 0.80){
+    // ЕСЛИ AI НЕ УВЕРЕН
+    if (bestPrediction.probability < 0.75) {
 
         result.innerHTML =
             "❓ AI ei ole kindel mis see on";
@@ -264,80 +265,61 @@ async function predictImage() {
         return;
     }
 
-
-
-    if(bestPrediction.className == "Other") {
+    // OTHER
+    if (bestPrediction.className === "Other") {
 
         result.innerHTML =
             "❌ See ei ole lennuk 😄";
     }
 
-
-
-    else if(bestPrediction.className ==
-        "Real airplane") {
+    // REAL AIRPLANE
+    else if (bestPrediction.className === "Real airplane") {
 
         result.innerHTML =
             "✈️ See on päris lennuk";
     }
 
-
-
-    else if(bestPrediction.className ==
-        "Glider") {
+    // GLIDER
+    else if (bestPrediction.className === "Glider") {
 
         result.innerHTML =
-            "✅ Tuvastatud: Purilennuk";
+            "🛩️ Tuvastatud: Purilennuk";
 
+        tutorial.innerHTML = `
+            <h3>Kuidas voltida purilennukit?</h3>
 
+            <p>1. Voldi paber pooleks</p>
+            <p>2. Tee pikad ja kitsad tiivad</p>
+            <p>3. Voldi servad alla</p>
 
-        tutorial.innerHTML =
-
-        `
-        <h3>Kuidas voltida?</h3>
-
-        <p>1. Voldi paber pooleks</p>
-
-        <p>2. Tee pikad tiivad</p>
-
-        <p>3. Voldi servad alla</p>
-
-        <iframe width="320"
-                height="200"
-                src="https://www.youtube.com/embed/7KPaxKUDj6I"
-                frameborder="0"
-                allowfullscreen>
-        </iframe>
+            <iframe width="320"
+                    height="200"
+                    src="https://www.youtube.com/embed/7KPaxKUDj6I"
+                    frameborder="0"
+                    allowfullscreen>
+            </iframe>
         `;
     }
 
-
-
-    else if(bestPrediction.className ==
-        "Classic paper airplane") {
+    // CLASSIC PAPER AIRPLANE
+    else if (bestPrediction.className === "Classic paper airplane") {
 
         result.innerHTML =
-            "✅ Klassikaline paberlennuk";
+            "✈️ Klassikaline paberlennuk";
 
+        tutorial.innerHTML = `
+            <h3>Kuidas voltida klassikalist lennukit?</h3>
 
+            <p>1. Voldi paber keskele</p>
+            <p>2. Tee terav nina</p>
+            <p>3. Voldi tiivad</p>
 
-        tutorial.innerHTML =
-
-        `
-        <h3>Kuidas voltida?</h3>
-
-        <p>1. Voldi paber keskele</p>
-
-        <p>2. Tee nina teravaks</p>
-
-        <p>3. Voldi tiivad</p>
-
-        <iframe width="320"
-                height="200"
-                src="https://www.youtube.com/embed/mCrAqCzMZ8c"
-                frameborder="0"
-                allowfullscreen>
-        </iframe>
+            <iframe width="320"
+                    height="200"
+                    src="https://www.youtube.com/embed/mCrAqCzMZ8c"
+                    frameborder="0"
+                    allowfullscreen>
+            </iframe>
         `;
     }
 }
